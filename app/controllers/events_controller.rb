@@ -3,7 +3,16 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @events = Event.order(:priority)
+  end
+
+  def update_order
+    params[:events].each do |_, event_params|
+      event = Event.find(event_params[:id])
+      event.update(priority: event_params[:priority])
+    end
+
+    head :no_content
   end
 
   # GET /events/1 or /events/1.json

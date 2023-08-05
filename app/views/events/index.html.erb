@@ -1,11 +1,10 @@
-<%= javascript_include_tag 'sortable_events' %>
-
 <div class="container">
   <p style="color: green"><%= notice %></p>
   <h1 class="my-4">Events List</h1>
-  <table class="table table-bordered table-striped">
+  <table id="events-table" class="table table-bordered table-striped">
     <thead>
       <tr>
+        <th>Priority</th>
         <th>Event Name</th>
         <th>Venue</th>
         <th colspan="3"></th>
@@ -13,7 +12,8 @@
     </thead>
     <tbody>
       <% @events.each do |event| %>
-        <tr>
+        <tr data-event-id="<%= event.id %>">
+          <td><%= event.priority %></td>
           <td><%= event.name %></td>
           <td><%= event.venue %></td>
           <td><%= link_to 'Show', event %></td>
